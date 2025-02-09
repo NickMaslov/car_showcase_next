@@ -1,17 +1,29 @@
-import { CarProps } from "@/types";
+import { CarProps, FilterProps } from "@/types";
 
-export async function fetchCars() {
+export async function fetchCars(filters: FilterProps) {
   try {
     const headers = {
       "x-rapidapi-key": "7f975e84fdmshb8f7ed4f5ae5f48p16d3e8jsn0d8f7a740863",
       "x-rapidapi-host": "cars-by-api-ninjas.p.rapidapi.com",
     };
-    const response = await fetch(
-      "https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=carrera",
-      {
-        headers: headers,
-      }
-    );
+
+    let response: Response;
+    if (filters) {
+      const { manufacturer, year, model, limit, fuel } = filters;
+      response = await fetch(
+        `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${manufacturer}&year=${year}&model=${model}&limit=${limit}&fuel_type=${fuel}`,
+        {
+          headers: headers,
+        }
+      );
+    } else {
+      response = await fetch(
+        "https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=carrera",
+        {
+          headers: headers,
+        }
+      );
+    }
 
     const result = await response.json();
 
