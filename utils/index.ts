@@ -17,6 +17,7 @@ export async function fetchCars(filters?: FilterProps) {
     //   }
     // );
 
+    console.log(filters);
     response = await fetch(
       "https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=carrera",
       {

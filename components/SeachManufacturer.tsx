@@ -14,10 +14,7 @@ import Image from "next/image";
 import { SeachManufacturerProps } from "@/types";
 import { manufacturers } from "../constants";
 
-function SeachManufacturer({
-  manufacturer,
-  setManufacturer,
-}: SeachManufacturerProps) {
+function SeachManufacturer({ selected, setSelected }: SeachManufacturerProps) {
   const [query, setQuery] = useState("");
 
   const filteredManufacturers =
@@ -32,7 +29,7 @@ function SeachManufacturer({
 
   return (
     <div className="search-manufacturer">
-      <Combobox>
+      <Combobox value={selected} onChange={setSelected}>
         <div className="relative w-full">
           <ComboboxButton className="absolute top-[14px]">
             <Image
