@@ -8,22 +8,21 @@ export async function fetchCars(filters?: FilterProps) {
     };
 
     let response: Response;
-    if (filters) {
-      const { manufacturer, year, model, limit, fuel } = filters;
-      response = await fetch(
-        `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${manufacturer}&year=${year}&model=${model}&limit=${limit}&fuel_type=${fuel}`,
-        {
-          headers: headers,
-        }
-      );
-    } else {
-      response = await fetch(
-        "https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=carrera",
-        {
-          headers: headers,
-        }
-      );
-    }
+
+    // const { manufacturer, year, model, limit, fuel } = filters;
+    // response = await fetch(
+    //   `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${manufacturer}&year=${year}&model=${model}&limit=${limit}&fuel_type=${fuel}`,
+    //   {
+    //     headers: headers,
+    //   }
+    // );
+
+    response = await fetch(
+      "https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=carrera",
+      {
+        headers: headers,
+      }
+    );
 
     const result = await response.json();
 
